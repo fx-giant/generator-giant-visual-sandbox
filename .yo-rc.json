@@ -1,0 +1,9 @@
+{
+  "generator-node": {
+    "promptValues": {
+      "authorName": "Hans Yulian",
+      "authorEmail": "hansyulian@windowslive.com",
+      "authorUrl": "hansyulian.com"
+    }
+  }
+}

@@ -1,0 +1,48 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="css/visual-editor.css">
+    <link rel="stylesheet" href="<%= visualName %>/<%= visualName %>.css">
+
+</head>
+
+<body>
+    <div class="visual-editor">
+    </div>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/d3/d3.min.js"></script>
+    <script src="bower_components/knockout/dist/knockout.debug.js"></script>
+    <script src="bower_components/underscore/underscore-min.js"></script>
+    <script src="bower_components/hy-javascript-utilities/dist/hy-javascript-utility.min.js"></script>
+    <script src="bower_components/amcharts/dist/amcharts/amcharts.js"></script>
+    <script src="js/dependencies.js"></script>
+    <script src="js/visual-editor.js"></script>
+    <script src="<%= visualName %>/<%= visualName %>.js"></script>
+    <script>
+        (function () {
+            var viewports = [{
+                width: 400,
+                height: 250,
+                parameters: {
+                    is3D: true,
+                    backgroundColor: "#00838F"
+                }
+            }, {
+                width: 640,
+                height: 480,
+            }, {
+                width: 1280,
+                height: 720,
+                parameters: data.xygroup.parameters,
+                data: data.xygroup.data
+            }, {
+                width: 800,
+                height: 600,
+                parameters: {}
+            }]
+            initialize("<%= visualName %>", viewports);
+        })();
+    </script>
+</body>
+
+</html>

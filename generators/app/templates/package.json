@@ -1,0 +1,15 @@
+{
+    "name": "visual-editor",
+    "version": "1.0.0",
+    "description": "",
+    "main": "gulpfile.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "gulp-worker": "latest",
+        "reload": "^2.2.2"
+    }
+}

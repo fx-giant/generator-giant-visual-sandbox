@@ -1,0 +1,14 @@
+{
+    "visualName": "<%= visualName %>",
+    "displayName": "<%= visualName %>",
+    "groupId": "visual.sandbox.<%= visualName %>",
+    "packageId": "sample",
+    "author": "Hans Yulian",
+    "version": "1.0.0",
+    "scripts": [
+        "<%= visualName %>.js"
+    ],
+    "styles": [
+        "<%= visualName %>.css"
+    ]
+}
