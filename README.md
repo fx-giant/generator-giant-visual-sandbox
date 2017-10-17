@@ -16,6 +16,14 @@ Then generate your new project:
 yo giant-visual-sandbox
 ```
 
+Then install the dependencies
+
+```bash
+npm install
+bower install
+save
+```
+
 ## Getting To Know Yeoman
 
  * Yeoman has a heart of gold.
