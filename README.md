@@ -8,6 +8,7 @@ First, install [Yeoman](http://yeoman.io) and generator-giant-visual-sandbox usi
 ```bash
 npm install -g yo
 npm install -g generator-giant-visual-sandbox
+npm install -g gulp-cli bower
 ```
 
 Then generate your new project:
@@ -21,7 +22,11 @@ Then install the dependencies
 ```bash
 npm install
 bower install
-save
+```
+
+Then execute the gulp for initialize the scripts
+```bash
+gulp
 ```
 
 ## Getting To Know Yeoman
