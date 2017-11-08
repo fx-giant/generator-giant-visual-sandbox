@@ -10,12 +10,11 @@ module.exports = class extends Generator {
       'Welcome to the cat\'s meow ' + chalk.red('generator-giant-visual-sandbox') + ' generator!'
     ));
 
-
     const prompts = [{
 
       name: 'visualPackName',
       message: 'Give a name to your visual pack (camel case)',
-      default: "sampleVisualPack"
+      default: 'sampleVisualPack'
     }];
 
     return this.prompt(prompts).then(props => {
@@ -25,27 +24,25 @@ module.exports = class extends Generator {
   }
 
   writing() {
-    var base = ["bower.json", "package.json", "src", "index.html", "gulpfile.js"];
-    var visualPackTemplates = ["{{visualName}}/config.json", "{{visualName}}/{{visualName}}.css", "{{visualName}}/{{visualName}}.js", "{{visualName}}/quadrant-properties-{{visualName}}.html", "{{visualName}}/quadrant-properties-{{visualName}}.js"];
+    var base = ['bower.json', 'package.json', 'src', 'index.html', 'gulpfile.js'];
+    var visualPackTemplates = ['{{visualName}}/config.json', '{{visualName}}/{{visualName}}.css', '{{visualName}}/{{visualName}}.js', '{{visualName}}/quadrant-properties-{{visualName}}.html', '{{visualName}}/quadrant-properties-{{visualName}}.js'];
     var files = base.concat(visualPackTemplates);
 
     var visualName = this.props.visualPackName;
     var templateValues = {
       visualName: visualName
-    }
+    };
 
-    for (var i = 0; i < files.length; i++)
+    for (var i = 0; i < files.length; i++) {
       this.fs.copyTpl(
         this.templatePath(files[i]),
-        this.destinationPath(files[i]).replace(new RegExp("{{visualName}}", "g"), visualName),
+        this.destinationPath(visualName + '/' + files[i]).replace(new RegExp('{{visualName}}', 'g'), visualName),
         templateValues
       );
-
-
+    }
   }
 
-
   install() {
-    this.installDependencies();
+
   }
 };

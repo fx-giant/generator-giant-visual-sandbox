@@ -1,19 +1,19 @@
 <div class="quadrant-properties">
-    <div class="quadrant-properties__databind">
+  <div class="quadrant-properties__databind">
 
-        <!-- uncomment this to activate top bottom filtering -->
-        <!--<quadrant-control params="
+    <!-- uncomment this to activate top bottom filtering -->
+    <!--<quadrant-control params="
             controlType: 'topBottom', 
             quadrantComposer: quadrantComposer, 
             selectedConnectionSource: selectedConnectionSource, 
         "></quadrant-control>-->
 
 
-        <!--Uncomment this to activate connection source component-->
-        <!--<quadrant-control params=" controlType: 'connectionSource',  quadrantViewModel: quadrantViewModel, "></quadrant-control>-->
+    <!--Uncomment this to activate connection source component-->
+    <!--<quadrant-control params=" controlType: 'connectionSource',  quadrantViewModel: quadrantViewModel, "></quadrant-control>-->
 
-        <!--Single Binding Dimension-->
-        <!--<quadrant-control ve-type="single-dimension-quadrant-control" params="
+    <!--Single Binding Dimension-->
+    <!--<quadrant-control ve-type="single-dimension-quadrant-control" params="
             labelKey: 'labelKeyOrLabel',
             parameterKey: 'myParameterName', 
             controlType: 'simpleSingleBinding', 
@@ -21,8 +21,8 @@
             quadrantViewModel: quadrantViewModel, 
         "></quadrant-control>-->
 
-        <!--Single Binding Measurement> -->
-        <!--<quadrant-control ve-type="single-dimension-quadrant-control" params="
+    <!--Single Binding Measurement> -->
+    <!--<quadrant-control ve-type="single-dimension-quadrant-control" params="
             labelKey: 'labelKeyOrLabel',
             parameterKey: 'myParameterName', 
             controlType: 'simpleSingleBinding', 
@@ -30,12 +30,12 @@
             quadrantViewModel: quadrantViewModel, 
         "></quadrant-control>-->
 
-        <!--Separator-->
-        <hr class="quadrant-properties__seperator">
+    <!--Separator-->
+    <hr class="quadrant-properties__seperator">
 
 
-        <!--Normal Text box input-->
-        <!--<div class="sandbox__row">
+    <!--Normal Text box input-->
+    <!--<div class="sandbox__row">
             <div class="sandbox__label">Normal Text Box Input</div>
             <div class="text-box text-box--white">
                 <div class="text-box__input">
@@ -44,8 +44,8 @@
             </div>
         </div>-->
 
-        <!--Simple Select-->
-        <!--<div class="sandbox__row">
+    <!--Simple Select-->
+    <!--<div class="sandbox__row">
             <div class="sandbox__label">Select</div>
             <select class="form-control" data-bind="value: selectBinding">
                 <option value="up" selected="">Up</option>
@@ -54,8 +54,8 @@
         </div>-->
 
 
-        <!--Simple Switch-->
-        <!--<div>
+    <!--Simple Switch-->
+    <!--<div>
             <div class="quadrant-properties__label">This is Switch</div>
             <div class="quadrant-properties__databind-item">
                 <switch params="value: isSwitchSwitched, isLabelVisible: false ">
@@ -63,8 +63,8 @@
             </div>
         </div>-->
 
-        <!-- Color Palette -->
-        <!--<div class="quadrant-properties__databind-content">
+    <!-- Color Palette -->
+    <!--<div class="quadrant-properties__databind-content">
             <div class="quadrant-properties__label" data-bind="text: 'Color:'"></div>
             <div class="quadrant-properties__databind-item">
                 <div style="user-select:none;cursor:pointer;font-size:12px;color:#878787;width:100%;transition: all 0.5s ease-in;margin-bottom: 8px;"
@@ -90,21 +90,23 @@
         </div>-->
 
 
-        <!--uncomment this to activate sorting functions-->
-        <!--<hr class="quadrant-properties__seperator">
+    <!--uncomment this to activate sorting functions-->
+    <!--<hr class="quadrant-properties__seperator">
             <quadrant-control params="
                 controlType: 'sorting', 
                 quadrantComposer: quadrantComposer, 
                 selectedConnectionSource: selectedConnectionSource, 
             "></quadrant-control>-->
 
-        <!-- uncomment this to activate filter functions -->
-        <!--<hr class="quadrant-properties__seperator">
+    <!-- uncomment this to activate filter functions -->
+    <!--<hr class="quadrant-properties__seperator">
         <quadrant-control ve-type="undefined" params="
             controlType: 'multiCondition', 
             quadrantComposer: quadrantComposer, 
             selectedConnectionSource: selectedConnectionSource, 
         "></quadrant-control>-->
+    <!-- uncomment this to activate cross chart filter -->
+    <!-- <quadrant-control params="controlType: 'filterSubscriber', quadrant: quadrant"></quadrant-control> -->
 
-    </div>
+  </div>
 </div>

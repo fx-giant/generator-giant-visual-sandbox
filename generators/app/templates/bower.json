@@ -17,6 +17,7 @@
         "font-awesome": "latest",
         "d3": "^3.*.*",
         "underscore": "latest",
-        "hy-javascript-utilities": "latest"
+        "hy-javascript-utilities": "latest",
+        "amcharts": "latest"
     }
 }
