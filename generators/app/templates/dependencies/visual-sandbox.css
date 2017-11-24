@@ -1,0 +1,37 @@
+.visual-sandbox .viewport,
+.visual-sandbox .visual {
+  border: 3px dashed black;
+  padding: 10px;
+  margin: 10px;
+  position: relative;
+}
+.visual-sandbox .viewport.resizeable,
+.visual-sandbox .visual.resizeable {
+  resize: both;
+  overflow: auto;
+}
+.visual-sandbox .visual-container {
+  height: 100%;
+  width: 100%;
+}
+.visual-sandbox .size-indicator {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  background-color: rgba(127, 127, 200, 0.5);
+  padding: 20px;
+  border: 1px solid #1976D2;
+  color: white;
+  border-radius: 5px;
+}
+.visual-sandbox .console {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  border: 1px solid #607D8B;
+  padding: 20px;
+  overflow: auto;
+  resize: both;
+  width: 300px;
+  height: 200px;
+}

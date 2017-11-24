@@ -1,96 +1,114 @@
-require('dotenv').config();
-var env = process.env;
 var request = require("request");
 var fs = require("fs");
 var dateTime = require("node-datetime");
 var archiver = require("archiver");
+var argv = process.argv;
 
-const defaultBackupDirectory = "__backup__";
+
+
+var config = JSON.parse(fs.readFileSync('config.json', 'utf8'));
+
+var processType = argv[2] || "upload";
+
+const defaultSaveDirectory = "packs";
+
 var targets = {
-    SIT: "http://172.16.53.228/WebSites/Analytics/api/VisualPack/Upload",
+	SIT: "http://172.16.53.228/WebSites/Analytics/api/VisualPack/Upload",
 }
 
-var zipName = env.ZIP_NAME || "nameless-visual-pack";
-var sourceDirectory = env.SOURCE_DIRECTORY || zipName;
+var zipName = "<%= visualName %>";
+var sourceDirectory = config.sourceFolder || "source";
 var zipFile = zipName + ".zip";
-var cookie = env.COOKIE;
-var target = env.TARGET;
-var targetUrl = env.TARGET_URL;
-var backup = env.BACKUP == "true";
-var backupDirectory = env.BACKUP_DIRECTORY || defaultBackupDirectory;
+var cookie = config.cookie;
+var target = config.target;
+var targetUrl = config.targetUrl;
+var saveDirectory = config.saveDirectory || defaultSaveDirectory;
 var uploadUrl = targetUrl || targets[target];
 var now = dateTime.create().format("Y-m-d_H-M-S");
 
-start();
 
-function start() {
-    zipTheVisualPack();
+if (processType == "upload")
+	startUpload();
+else
+if (processType == "save")
+	startSave();
+
+function startUpload() {
+	zipTheVisualPack(uploadFile);
 }
 
-function zipTheVisualPack() {
-    var archive = archiver("zip", {
-        zlib: {
-            level: 9
-        }
-    })
-    var output = fs.createWriteStream(zipFile);
-    output.on("close", function () {
-        console.log("Files zipped to " + zipFile);
-        uploadFile();
-    });
+function startSave() {
+	zipTheVisualPack(savePack);
+}
 
-    fs.readdirSync(sourceDirectory).forEach(function (file) {
-        var read = fs.createReadStream(sourceDirectory + "/" + file);
-        archive.append(read, {
-            name: file
-        });
-    })
-    archive.pipe(output);
-    archive.finalize();
+function zipTheVisualPack(callback) {
+	var archive = archiver("zip", {
+		zlib: {
+			level: 9
+		}
+	})
+	var output = fs.createWriteStream(zipFile);
+	output.on("close", function () {
+		console.log("Files zipped to " + zipFile);
+		callback();
+	});
+
+	fs.readdirSync(sourceDirectory).forEach(function (file) {
+		var read = fs.createReadStream(sourceDirectory + "/" + file);
+		archive.append(read, {
+			name: file
+		});
+	})
+	archive.pipe(output);
+	archive.finalize();
 
 }
 
 function uploadFile() {
-    console.log("Upload File: ", zipFile);
-    console.log("Uploading to ", uploadUrl)
-    var requestObj = {
-        method: "post",
-        uri: uploadUrl,
-        headers: {
-            "Cookie": cookie
-        },
-        formData: {
-            attachments: [fs.createReadStream(zipFile)]
-        }
-    };
+	if (!cookie)
+		throw "Null cookie";
+	console.log("Upload File: ", zipFile);
+	console.log("Uploading to ", uploadUrl)
+	var requestObj = {
+		method: "post",
+		uri: uploadUrl,
+		headers: {
+			"Cookie": cookie
+		},
+		formData: {
+			attachments: [fs.createReadStream(zipFile)]
+		}
+	};
 
-    var req = request(requestObj, function (err, resp, body) {
-        if (err) {
-            console.log('Error!', err);
-        } else {
-            finisher();
-        }
-    });
+	var req = request(requestObj, function (err, resp, body) {
+		try {
+			JSON.parse(body);
+			console.log("Upload Success");
+		} catch (ex) {
+			console.log("FAILED TO UPLOAD!");
+		}
+		finisher();
+	});
 }
 
 function finisher() {
-    if (backup) {
-        backupName = zipName + "__" + now + ".zip";
-        var backupTarget = backupDirectory + "/" + backupName;
-        console.log("Backing up to " + backupTarget);
-        moveFile(zipFile, backupTarget);
-    } else {
-        fs.unlink(zipFile, function () {});
-    }
+	fs.unlink(zipFile, function () {});
+}
+
+function savePack() {
+	backupName = zipName + "__" + now + ".zip";
+	var backupTarget = saveDirectory + "/" + backupName;
+	console.log("Saving to " + backupTarget);
+	moveFile(zipFile, backupTarget);
 }
 
 function moveFile(from, to, callback) {
-    var is = fs.createReadStream(from);
-    var os = fs.createWriteStream(to);
+	var is = fs.createReadStream(from);
+	var os = fs.createWriteStream(to);
 
-    is.pipe(os);
-    is.on('end', function () {
-        fs.unlink(from);
-        (callback || function () {})();
-    });
+	is.pipe(os);
+	is.on('end', function () {
+		fs.unlink(from, function () {});
+		(callback || function () {})();
+	});
 }
