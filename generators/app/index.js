@@ -2,6 +2,7 @@
 const Generator = require('yeoman-generator');
 const chalk = require('chalk');
 const yosay = require('yosay');
+const visualPackFolder = "source";
 
 module.exports = class extends Generator {
   prompting() {
@@ -24,19 +25,38 @@ module.exports = class extends Generator {
   }
 
   writing() {
-    var base = ['bower.json', 'package.json', 'src', 'index.html', 'gulpfile.js'];
-    var visualPackTemplates = ['{{visualName}}/config.json', '{{visualName}}/{{visualName}}.css', '{{visualName}}/{{visualName}}.js', '{{visualName}}/quadrant-properties-{{visualName}}.html', '{{visualName}}/quadrant-properties-{{visualName}}.js'];
-    var files = base.concat(visualPackTemplates);
+    var justCopy = [
+      'package.json',
+      'dependencies',
+      'packs',
+    ];
+    var copyWithRender = [
+      'index.html',
+      'packer.js',
+      'config.json',
+      'source/config.json',
+      'source/{{visualName}}.css',
+      'source/{{visualName}}.js',
+      'source/quadrant-properties-{{visualName}}.html',
+      'source/quadrant-properties-{{visualName}}.js'
+    ];
 
     var visualName = this.props.visualPackName;
     var templateValues = {
       visualName: visualName
     };
-
-    for (var i = 0; i < files.length; i++) {
+    for (var i = 0; i < justCopy.length; i++) {
+      var file = justCopy[i];
+      this.fs.copy(
+        this.templatePath(file),
+        this.destinationPath(visualName + "/" + file)
+      )
+    }
+    for (var i = 0; i < copyWithRender.length; i++) {
+      var file = copyWithRender[i];
       this.fs.copyTpl(
-        this.templatePath(files[i]),
-        this.destinationPath(visualName + '/' + files[i]).replace(new RegExp('{{visualName}}', 'g'), visualName),
+        this.templatePath(file),
+        this.destinationPath(visualName + '/' + file).replace(new RegExp('{{visualName}}', 'g'), visualName),
         templateValues
       );
     }

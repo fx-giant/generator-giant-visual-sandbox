@@ -1,41 +1,50 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="css/visual-editor.css">
-    <link rel="stylesheet" href="<%= visualName %>/<%= visualName %>.css">
+	<link rel="stylesheet" href="dependencies/bootstrap.css">
+	<link rel="stylesheet" href="dependencies/visual-sandbox.css">
+	<link rel="stylesheet" href="source/<%= visualName %>.css">
 
 </head>
 
 <body>
-    <div class="visual-editor">
-    </div>
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="bower_components/d3/d3.min.js"></script>
-    <script src="bower_components/knockout/dist/knockout.debug.js"></script>
-    <script src="bower_components/underscore/underscore-min.js"></script>
-    <script src="bower_components/hy-javascript-utilities/dist/hy-javascript-utility.min.js"></script>
-    <script src="bower_components/amcharts/dist/amcharts/amcharts.js"></script>
-    <script src="js/dependencies.js"></script>
-    <script src="js/visual-editor.js"></script>
-    <script src="<%= visualName %>/<%= visualName %>.js"></script>
-    <script>
-        (function () {
-            var viewports = [{
-                width: "90vw",
-                height: "80vh"
-            }, {
-                width: 640,
-                height: 480,
-            }, {
-                width: 1280,
-                height: 720,
-            }, {
-                width: 800,
-                height: 600,
-            }]
-            initialize("<%= visualName %>", viewports);
-        })();
-    </script>
+	<div class="visual-sandbox">
+	</div>
+	<script src="dependencies/jquery.js"></script>
+	<script src="dependencies/bootstrap.js"></script>
+	<script src="dependencies/amcharts.js"></script>
+	<script src="dependencies/funnel.js"></script>
+	<script src="dependencies/gantt.js"></script>
+	<script src="dependencies/gauge.js"></script>
+	<script src="dependencies/pie.js"></script>
+	<script src="dependencies/radar.js"></script>
+	<script src="dependencies/serial.js"></script>
+	<script src="dependencies/xy.js"></script>
+	<script src="dependencies/underscore-min.js"></script>
+	<script src="dependencies/d3.js"></script>
+	<script src="dependencies/knockout.debug.js"></script>
+	<script src="dependencies/hy.js"></script>
+	<script src="dependencies/visual-sandbox.js"></script>
+	<script src="source/<%= visualName %>.js"></script>
+	<script>
+		(function () {
+			var viewports = [{
+				width: "90vw",
+				height: "80vh"
+			}, {
+				width: 640,
+				height: 480,
+			}, {
+				width: 1280,
+				height: 720,
+			}, {
+				width: 800,
+				height: 600,
+			}]
+			initialize("<%= visualName %>", viewports);
+		})();
+
+	</script>
 </body>
 
 </html>
