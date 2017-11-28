@@ -1,6 +1,6 @@
 {
   "name": "generator-giant-visual-sandbox",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Giant's Visual sandbox for developing new visual pack",
   "homepage": "",
   "author": {
@@ -46,6 +46,6 @@
       "node": true
     }
   },
-  "repository": "hansyulian/generator-giant-visual-sandbox",
+  "repository": "fx/generator-giant-visual-sandbox",
   "private": true
 }

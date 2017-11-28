@@ -28,7 +28,7 @@ module.exports = class extends Generator {
     var justCopy = [
       'package.json',
       'dependencies',
-      'packs',
+      'packs/.gitkeep',
     ];
     var copyWithRender = [
       'index.html',
