@@ -46,6 +46,5 @@
       "node": true
     }
   },
-  "repository": "fx/generator-giant-visual-sandbox",
-  "private": true
+  "repository": "fx/generator-giant-visual-sandbox"
 }
