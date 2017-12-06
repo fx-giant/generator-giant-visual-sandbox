@@ -1,17 +1,18 @@
 {
-	"name": "visual-sandbox",
-	"version": "1.0.0",
-	"description": "",
-	"main": "gulpfile.js",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"upload": "node packer.js upload",
-		"save": "node packer.js save"
-	},
-	"author": "",
-	"license": "ISC",
-	"dependencies": {
-		"archiver": "^2.1.0",
-		"request": "^2.83.0"
-	}
+    "name": "visual-sandbox",
+    "version": "1.0.0",
+    "description": "",
+    "main": "gulpfile.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "upload": "node packer.js upload",
+        "save": "node packer.js save"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "archiver": "^2.1.0",
+        "request": "^2.83.0",
+        "node-datetime": "2.0.3"
+    }
 }
